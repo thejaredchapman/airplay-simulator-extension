@@ -1,7 +1,7 @@
 {
   "manifest_version": 3,
   "name": "AirPlay Simulator & Enabler",
-  "version": "1.0",
+  "version": "1.1",
   "description": "Adds an AirPlay-style button to HTML5 videos on any webpage to trigger native casting or open video stream.",
   "permissions": [
     "activeTab",

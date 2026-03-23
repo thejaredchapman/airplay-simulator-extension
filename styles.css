@@ -1,9 +1,22 @@
+/* AirPlay Simulator - Video Container */
+.airplay-sim-container .airplay-sim-btn {
+  opacity: 0;
+  pointer-events: none;
+  transition: opacity 0.25s ease, transform 0.2s ease;
+}
+
+.airplay-sim-container:hover .airplay-sim-btn,
+.airplay-sim-container:focus-within .airplay-sim-btn {
+  opacity: 1;
+  pointer-events: auto;
+}
+
 /* AirPlay Simulator Button */
 .airplay-sim-btn {
   position: absolute;
   top: 10px;
   right: 10px;
-  z-index: 2147483647; /* Highest z-index */
+  z-index: 2147483647;
   width: 40px;
   height: 40px;
   background-color: rgba(0, 0, 0, 0.7);
@@ -12,8 +25,8 @@
   align-items: center;
   justify-content: center;
   cursor: pointer;
-  transition: all 0.2s ease;
-  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.3);
+  box-shadow: 0 2px 6px rgba(0, 0, 0, 0.4);
+  color: white;
 }
 
 .airplay-sim-btn:hover {
@@ -25,7 +38,18 @@
 .airplay-sim-btn svg {
   width: 20px;
   height: 20px;
-  fill: currentColor;
+}
+
+/* Backdrop Overlay */
+.airplay-sim-backdrop {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-color: rgba(0, 0, 0, 0.5);
+  z-index: 2147483646;
+  animation: airplay-fade-in 0.2s ease;
 }
 
 /* Fallback Modal */
@@ -35,14 +59,15 @@
   left: 50%;
   transform: translate(-50%, -50%);
   background-color: white;
-  padding: 20px;
-  border-radius: 8px;
-  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.2);
+  padding: 24px;
+  border-radius: 12px;
+  box-shadow: 0 8px 32px rgba(0, 0, 0, 0.3);
   z-index: 2147483647;
   font-family: system-ui, -apple-system, sans-serif;
-  max-width: 400px;
+  max-width: 420px;
   width: 90%;
   color: #333;
+  animation: airplay-slide-up 0.25s ease;
 }
 
 .airplay-sim-content h3 {
@@ -54,16 +79,17 @@
 .airplay-sim-content p {
   margin-bottom: 15px;
   font-size: 14px;
-  line-height: 1.4;
+  line-height: 1.5;
 }
 
 .airplay-sim-content input {
   width: 100%;
-  padding: 8px;
+  padding: 8px 10px;
   margin-bottom: 15px;
   border: 1px solid #ddd;
-  border-radius: 4px;
+  border-radius: 6px;
   font-size: 13px;
+  box-sizing: border-box;
 }
 
 .airplay-sim-actions {
@@ -75,7 +101,7 @@
 .airplay-sim-actions button {
   padding: 8px 16px;
   border: none;
-  border-radius: 4px;
+  border-radius: 6px;
   cursor: pointer;
   font-size: 14px;
   background-color: #007aff;
@@ -87,7 +113,28 @@
   background-color: #0056b3;
 }
 
-.airplay-sim-actions button#aps-close {
+.airplay-sim-actions button.airplay-sim-close-btn {
   background-color: #f2f2f7;
   color: #333;
+}
+
+.airplay-sim-actions button.airplay-sim-close-btn:hover {
+  background-color: #e5e5ea;
+}
+
+/* Animations */
+@keyframes airplay-fade-in {
+  from { opacity: 0; }
+  to { opacity: 1; }
+}
+
+@keyframes airplay-slide-up {
+  from {
+    opacity: 0;
+    transform: translate(-50%, -45%);
+  }
+  to {
+    opacity: 1;
+    transform: translate(-50%, -50%);
+  }
 }
